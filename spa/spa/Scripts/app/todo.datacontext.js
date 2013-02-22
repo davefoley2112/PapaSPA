@@ -1,4 +1,16 @@
-﻿window.todoApp = window.todoApp || {};
+﻿// The todo.datacontext.js contains a module that manages all data http requests. 
+// When the viewmodel(s) need to perform actions on data, it can defer all of those 
+// to the datacontext (save, delete, fetch, etc). Both my course’s SPA and this 
+// sample follow this separation of data services, which I really like so it keeps 
+// the ajaxian plumbing out of my viewmodels.
+//
+// Again, this module uses the IIFE and creates a module, this time named 
+// todoApp.datacontext. Notice is also uses the Revealing Module Pattern to expose 
+// just the members that are needed externally. This makes it simple to figure 
+// which method you need because methods like getTotoLists and saveNewTodoList 
+// are easily found and the internal logic is easily ignored.
+
+window.todoApp = window.todoApp || {};
 
 window.todoApp.datacontext = (function () {
 

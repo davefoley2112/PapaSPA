@@ -20,7 +20,6 @@
 // upcoming Pluralsight course on SPA fundamentals (date TBD).
 //
 
-
 (function (ko, datacontext) {
     datacontext.todoItem = todoItem;
     datacontext.todoList = todoList;
@@ -39,13 +38,11 @@
         var self = this;
         data = data || {};
 
-        // Persisted properties
         self.todoItemId = data.todoItemId;
         self.title = ko.observable(data.title);
         self.isDone = ko.observable(data.isDone);
         self.todoListId = data.todoListId;
 
-        // Non-persisted properties
         self.errorMessage = ko.observable();
 
         saveChanges = function () {
@@ -63,13 +60,11 @@
         var self = this;
         data = data || {};
 
-        // Persisted properties
         self.todoListId = data.todoListId;
         self.userId = data.userId || "to be replaced";
         self.title = ko.observable(data.title || "My todos");
         self.todos = ko.observableArray(importTodoItems(data.todos));
 
-        // Non-persisted properties
         self.isEditingListTitle = ko.observable(false);
         self.newTodoTitle = ko.observable();
         self.errorMessage = ko.observable();
@@ -87,6 +82,7 @@
 
         self.toJson = function () { return ko.toJSON(self) };
     };
+
     // convert raw todoItem data objects into array of TodoItems
     function importTodoItems(todoItems) {
         /// <returns value="[new todoItem()]"></returns>
@@ -95,6 +91,7 @@
                     return datacontext.createTodoItem(todoItemData);
                 });
     }
+
     todoList.prototype.addTodo = function () {
         var self = this;
         if (self.newTodoTitle()) { // need a title to save
